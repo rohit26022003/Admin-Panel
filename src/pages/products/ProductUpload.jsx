@@ -11,8 +11,11 @@ const ProductUpload = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Here you can handle the form submission
         console.log('Product Submitted:', { productName, category, price, stock, description, image });
+    };
+
+    const handleButtonClick = () => {
+        alert('Button next to image input clicked!');
     };
 
     return (
@@ -89,15 +92,23 @@ const ProductUpload = () => {
                     </Col>
                 </Row>
 
+                {/* File input + button side by side with button aligned a bit lower */}
                 <Row className="mt-3">
-                    <Col md={12}>
-                        <Form.Group controlId="image">
-                            <Form.Label>Product Image</Form.Label>
-                            <Form.Control
-                                type="file"
-                                onChange={(e) => setImage(e.target.files[0])}
-                                required
-                            />
+                    <Col md={6}>
+                        <Form.Group controlId="image" className="d-flex align-items-start">
+                            <div style={{ width: '50%' }}>
+                                <Form.Label>Product Image</Form.Label>
+                                <Form.Control
+                                    type="file"
+                                    onChange={(e) => setImage(e.target.files[0])}
+                                    required
+                                />
+                            </div>
+                            <div style={{ marginLeft: '10px', marginTop: '30px' }}>
+                                <Button variant="secondary" onClick={handleButtonClick}>
+                                    Click Me
+                                </Button>
+                            </div>
                         </Form.Group>
                     </Col>
                 </Row>
