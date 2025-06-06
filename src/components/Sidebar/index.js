@@ -5,7 +5,6 @@ import { AiFillProduct } from "react-icons/ai";
 import { IoCart } from "react-icons/io5";
 import { RiMessage2Fill } from "react-icons/ri";
 import { DiGoogleAnalytics } from "react-icons/di";
-// import { IoIosSettings } from "react-icons/io";
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -16,7 +15,7 @@ const Sidebar = () => {
 
     const isOpenSubmenu = (index) => {
         if (activeTab === index) {
-            setIsToggleSubmenu(!isToggleSubmenu); // toggle only if clicking again
+            setIsToggleSubmenu(!isToggleSubmenu);
         } else {
             setActiveTab(index);
             setIsToggleSubmenu(true);
@@ -37,13 +36,9 @@ const Sidebar = () => {
                         className={`w-100 ${activeTab === 0 ? 'active' : ''}`}
                         onClick={() => handleDirectNav('/dashboard', 0)}
                     >
-                        <span className="icon">
-                            <MdDashboard />
-                        </span>
+                        <span className="icon"><MdDashboard /></span>
                         Dashboard
-                        <span className="arrow">
-                            <FaAngleRight />
-                        </span>
+                        <span className="arrow"><FaAngleRight /></span>
                     </Button>
                 </li>
 
@@ -52,19 +47,17 @@ const Sidebar = () => {
                         className={`w-100 ${activeTab === 1 ? 'active' : ''}`}
                         onClick={() => isOpenSubmenu(1)}
                     >
-                        <span className="icon">
-                            <AiFillProduct />
-                        </span>
+                        <span className="icon"><AiFillProduct /></span>
                         Products
-                        <span className="arrow">
-                            <FaAngleRight />
-                        </span>
+                        <span className="arrow"><FaAngleRight /></span>
                     </Button>
+
                     <div className={`submenuwrapper ${activeTab === 1 && isToggleSubmenu ? 'collapsed' : 'collapse'}`}>
                         <ul className="submenu">
                             <li><Link to="/product-list">Product List</Link></li>
-                            <li><Link to="/product-view">Product View</Link></li> 
+                            <li><Link to="/product/1">Product View</Link></li> {/* Example ID */}
                             <li><Link to="/product-upload">Product Upload</Link></li>
+                            <li><Link to="/edit-product/1">Edit Product</Link></li> {/* ✅ Fixed route */}
                         </ul>
                     </div>
                 </li>
@@ -72,15 +65,11 @@ const Sidebar = () => {
                 <li className="align-items-center">
                     <Button
                         className={`w-100 ${activeTab === 2 ? 'active' : ''}`}
-                        onClick={() => navigate('/order-details/1')} // Link directly to order details with an example order ID
+                        onClick={() => handleDirectNav('/order-details/1', 2)} // Example order ID
                     >
-                        <span className="icon">
-                            <IoCart />
-                        </span>
+                        <span className="icon"><IoCart /></span>
                         Orders
-                        <span className="arrow">
-                            <FaAngleRight />
-                        </span>
+                        <span className="arrow"><FaAngleRight /></span>
                     </Button>
                 </li>
 
@@ -89,44 +78,22 @@ const Sidebar = () => {
                         className={`w-100 ${activeTab === 3 ? 'active' : ''}`}
                         onClick={() => handleDirectNav('/messages', 3)}
                     >
-                        <span className="icon">
-                            <RiMessage2Fill />
-                        </span>
+                        <span className="icon"><RiMessage2Fill /></span>
                         Messages
-                        <span className="arrow">
-                            <FaAngleRight />
-                        </span>
+                        <span className="arrow"><FaAngleRight /></span>
                     </Button>
                 </li>
+
                 <li className="align-items-center">
                     <Button
                         className={`w-100 ${activeTab === 4 ? 'active' : ''}`}
                         onClick={() => handleDirectNav('/analytics', 4)}
                     >
-                        <span className="icon">
-                            <DiGoogleAnalytics />
-                        </span>
+                        <span className="icon"><DiGoogleAnalytics /></span>
                         Analytics
-                        <span className="arrow">
-                            <FaAngleRight />
-                        </span>
+                        <span className="arrow"><FaAngleRight /></span>
                     </Button>
                 </li>
-
-                {/* <li className="align-items-center">
-                    <Button
-                        className={`w-100 ${activeTab === 6 ? 'active' : ''}`}
-                        onClick={() => handleDirectNav('/settings', 6)}
-                    >
-                        <span className="icon">
-                            <IoIosSettings />
-                        </span>
-                        Settings
-                        <span className="arrow">
-                            <FaAngleRight />
-                        </span>
-                    </Button>
-                </li> */}
             </ul>
         </div>
     );
